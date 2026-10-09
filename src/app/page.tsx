@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/navbar/navbar";
 import { HeroSection } from "@/components/hero/hero-section";
 import { AboutSection } from "@/components/sections/about-section";
+import { ImpactSection } from "@/components/sections/impact-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { ContributionSection } from "@/components/sections/contribution-section";
 import { ProjectsSection } from "@/components/sections/projects-section";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <main className="min-h-screen">
         <HeroSection />
         <AboutSection />
+        <ImpactSection />
         <HowItWorksSection />
         <ContributionSection />
         <ProjectsSection />

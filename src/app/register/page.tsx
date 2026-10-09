@@ -32,23 +32,23 @@ export default function RegisterPage() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 w-full max-w-md px-6 py-12"
       >
-        <div className="rounded-3xl border border-white/10 bg-black/40 backdrop-blur-2xl p-8 shadow-2xl shadow-cyan-500/10">
+        <div className="rounded-3xl border border-border bg-card/80 backdrop-blur-2xl p-8 shadow-2xl shadow-cyan-500/10">
           <div className="flex justify-center mb-6">
             <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20">
               <UserPlus className="h-7 w-7" />
             </div>
           </div>
           
-          <h1 className="text-3xl font-bold text-center text-white mb-2" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
+          <h1 className="text-3xl font-bold text-center text-foreground mb-2" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
             Join NSoC Winter
           </h1>
-          <p className="text-center text-slate-400 text-sm mb-8">
+          <p className="text-center text-muted-foreground text-sm mb-8">
             Create an account to access communities and project repos. Admin approval required.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="name" className="block text-xs font-medium text-slate-300 uppercase tracking-wider mb-2">
+              <label htmlFor="name" className="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
                 Full Name
               </label>
               <input
@@ -57,12 +57,12 @@ export default function RegisterPage() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
+                className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground/50 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
                 placeholder="John Doe"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-xs font-medium text-slate-300 uppercase tracking-wider mb-2">
+              <label htmlFor="email" className="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
                 Email Address
               </label>
               <input
@@ -71,7 +71,7 @@ export default function RegisterPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
+                className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground/50 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
                 placeholder="john@example.com"
               />
             </div>
@@ -90,9 +90,9 @@ export default function RegisterPage() {
             </motion.button>
           </form>
 
-          <div className="mt-8 text-center text-sm text-slate-400">
+          <div className="mt-8 text-center text-sm text-muted-foreground">
             Already registered?{" "}
-            <Link href="/login" className="text-cyan-400 font-semibold hover:text-cyan-300 transition-colors">
+            <Link href="/login" className="text-cyan-500 dark:text-cyan-400 font-semibold hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors">
               Login here
             </Link>
           </div>

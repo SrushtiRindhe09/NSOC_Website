@@ -3,8 +3,6 @@
 import { ArrowRight } from "lucide-react";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { nsocData } from "@/data/nsoc";
-import { useAuth } from "@/components/auth-provider";
-import Link from "next/link";
 import { motion } from "motion/react";
 
 /* SVG icons for social platforms — kept inline to avoid extra deps */
@@ -40,9 +38,28 @@ const channelIcons: Record<string, React.ComponentType<{ className?: string }>> 
   linkedin: LinkedInIcon,
 };
 
-export function CommunitySection() {
-  const { status } = useAuth();
+const channelColors: Record<string, { border: string; glow: string; icon: string; bg: string }> = {
+  discord: {
+    border: "hover:border-indigo-500/40",
+    glow: "hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.25)]",
+    icon: "text-indigo-400",
+    bg: "from-indigo-500/20 to-violet-500/10 group-hover:from-indigo-500/30 group-hover:to-violet-500/20",
+  },
+  whatsapp: {
+    border: "hover:border-emerald-500/40",
+    glow: "hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.25)]",
+    icon: "text-emerald-400",
+    bg: "from-emerald-500/20 to-green-500/10 group-hover:from-emerald-500/30 group-hover:to-green-500/20",
+  },
+  linkedin: {
+    border: "hover:border-sky-500/40",
+    glow: "hover:shadow-[0_0_30px_-5px_rgba(14,165,233,0.25)]",
+    icon: "text-sky-400",
+    bg: "from-sky-500/20 to-blue-500/10 group-hover:from-sky-500/30 group-hover:to-blue-500/20",
+  },
+};
 
+export function CommunitySection() {
   return (
     <section id="community" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -66,54 +83,32 @@ export function CommunitySection() {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {nsocData.community.channels.map((channel, i) => {
             const Icon = channelIcons[channel.icon] || DiscordIcon;
-            
-            // If it's a private community link (Discord/WhatsApp) and user isn't approved
-            const isPrivate = channel.platform === "Discord" || channel.platform === "WhatsApp";
-            const needsAuth = isPrivate && status !== "approved";
-            
+            const colors = channelColors[channel.icon] || channelColors.discord;
+
             return (
               <SectionReveal key={channel.platform} delay={i * 100 + 200}>
-                {needsAuth ? (
-                  <div className="group relative block rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-8 overflow-hidden">
-                    <div className="absolute inset-0 bg-background/60 backdrop-blur-md z-10 flex flex-col items-center justify-center p-4 text-center">
-                      <p className="text-sm font-semibold text-foreground mb-2">Members Only</p>
-                      <p className="text-xs text-muted-foreground mb-4">Login to view this invite link</p>
-                      <Link href="/login" className="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-500 text-xs font-semibold hover:bg-cyan-500/20 transition-colors">
-                        Login Now
-                      </Link>
+                <motion.a
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                  href={channel.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group block rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-8 transition-all duration-300 ${colors.border} ${colors.glow} relative overflow-hidden`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative z-10">
+                    <div className={`h-12 w-12 rounded-xl bg-gradient-to-br ${colors.bg} flex items-center justify-center mb-5 transition-colors duration-300`}>
+                      <Icon className={`h-6 w-6 ${colors.icon}`} />
                     </div>
-                    {/* Blurred background content */}
-                    <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/10 flex items-center justify-center mb-5 opacity-30">
-                      <Icon className="h-6 w-6 text-cyan-500" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2 opacity-30">
+                    <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
                       {channel.platform}
+                      <ArrowRight className={`h-4 w-4 ${colors.icon} opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all`} />
                     </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {channel.description}
+                    </p>
                   </div>
-                ) : (
-                  <motion.a
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    whileTap={{ scale: 0.98 }}
-                    href={channel.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-8 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-[0_0_30px_-5px_rgba(34,211,238,0.3)] relative overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="relative z-10">
-                      <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/10 flex items-center justify-center mb-5 group-hover:from-cyan-500/40 group-hover:to-blue-500/30 transition-colors duration-300 shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-                        <Icon className="h-6 w-6 text-cyan-400" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
-                        {channel.platform}
-                        <ArrowRight className="h-4 w-4 text-cyan-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {channel.description}
-                      </p>
-                    </div>
-                  </motion.a>
-                )}
+                </motion.a>
               </SectionReveal>
             );
           })}

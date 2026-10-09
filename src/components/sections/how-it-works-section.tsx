@@ -3,15 +3,16 @@
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { nsocData } from "@/data/nsoc";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { UserPlus, BookOpen, Code2, Gift } from "lucide-react";
+import { UserPlus, BookOpen, Code2, Gift, Trophy } from "lucide-react";
 import React, { useRef } from "react";
 
-const stepIcons = [UserPlus, BookOpen, Code2, Gift];
+const stepIcons = [UserPlus, BookOpen, Code2, Gift, Trophy];
 const stepColors = [
   "from-cyan-400 to-blue-500",
   "from-purple-400 to-pink-500",
   "from-nsoc-orange to-red-500",
   "from-yellow-400 to-amber-500",
+  "from-emerald-400 to-teal-500",
 ];
 
 function Card3D({ children, i }: { children: React.ReactNode, i: number }) {
@@ -53,7 +54,7 @@ function Card3D({ children, i }: { children: React.ReactNode, i: number }) {
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className="relative z-10 w-full rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 md:p-8 hover:bg-white/[0.05] transition-colors shadow-2xl"
+      className="relative z-10 w-full rounded-2xl border border-border bg-card/50 backdrop-blur-xl p-6 md:p-8 hover:bg-card/80 transition-colors shadow-lg dark:shadow-2xl"
     >
       {children}
     </motion.div>
@@ -62,7 +63,7 @@ function Card3D({ children, i }: { children: React.ReactNode, i: number }) {
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="relative py-24 md:py-32 overflow-hidden perspective-1000">
+    <section id="how-it-works" className="relative py-24 md:py-32 overflow-hidden" style={{ perspective: "1000px" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionReveal>
           <div className="text-center">
@@ -92,22 +93,22 @@ export function HowItWorksSection() {
                 <SectionReveal key={step.number} delay={i * 100}>
                   <div className={`relative flex items-center gap-6 md:gap-0 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
                     {/* Content */}
-                    <div className={`flex-1 ${isLeft ? "md:pr-16" : "md:pl-16"} perspective-1000`}>
+                    <div className={`flex-1 ${isLeft ? "md:pr-16" : "md:pl-16"}`} style={{ perspective: "1000px" }}>
                       <Card3D i={i}>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-6 relative" style={{ transform: "translateZ(30px)" }}>
                           {/* 3D Themed Icon Box */}
-                          <div className={`shrink-0 h-16 w-16 rounded-2xl bg-gradient-to-br ${colorGradient} flex items-center justify-center shadow-lg shadow-black/50`} style={{ transform: "translateZ(20px)" }}>
+                          <div className={`shrink-0 h-16 w-16 rounded-2xl bg-gradient-to-br ${colorGradient} flex items-center justify-center shadow-lg`} style={{ transform: "translateZ(20px)" }}>
                              <Icon className="h-8 w-8 text-white drop-shadow-md" style={{ transform: "translateZ(30px)" }} />
                           </div>
                           
                           <div>
-                            <span className="text-xs font-mono font-bold tracking-wider text-slate-400">
+                            <span className="text-xs font-mono font-bold tracking-wider text-muted-foreground">
                               STEP {step.number}
                             </span>
-                            <h3 className="mt-1 text-xl font-bold text-white drop-shadow-sm">
+                            <h3 className="mt-1 text-xl font-bold text-foreground drop-shadow-sm">
                               {step.title}
                             </h3>
-                            <p className="mt-2 text-sm text-slate-300 leading-relaxed max-w-sm">
+                            <p className="mt-2 text-sm text-muted-foreground leading-relaxed max-w-sm">
                               {step.description}
                             </p>
                           </div>

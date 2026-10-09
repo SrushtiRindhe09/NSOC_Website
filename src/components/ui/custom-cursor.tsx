@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { motion, useSpring } from "motion/react";
 
 export function CustomCursor() {
+  const [mounted, setMounted] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Smooth springs for the cursor
   const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
@@ -13,11 +15,13 @@ export function CustomCursor() {
   const cursorY = useSpring(0, springConfig);
 
   useEffect(() => {
-    // Don't show on mobile
+    setMounted(true);
+
+    // Don't show on mobile or reduced motion
     if (window.innerWidth < 768) return;
-    
-    // Check for reduced motion
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    setIsVisible(true);
 
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -48,11 +52,7 @@ export function CustomCursor() {
     };
   }, [cursorX, cursorY]);
 
-  // Hide on mobile or reduced motion environments entirely
-  if (typeof window !== "undefined") {
-    if (window.innerWidth < 768) return null;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return null;
-  }
+  if (!mounted || !isVisible) return null;
 
   return (
     <>
@@ -76,3 +76,4 @@ export function CustomCursor() {
     </>
   );
 }
+

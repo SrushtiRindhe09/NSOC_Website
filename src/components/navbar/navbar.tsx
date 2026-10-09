@@ -23,6 +23,17 @@ export function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [isMobileOpen]);
 
+  // Close mobile menu on Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMobileOpen) {
+        setIsMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileOpen]);
+
   return (
     <>
       <header
@@ -64,7 +75,7 @@ export function Navbar() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/50"
+                  className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   {item.label}
                 </a>
@@ -76,8 +87,6 @@ export function Navbar() {
               <ThemeToggle />
               <a
                 href={nsocData.navigation.cta.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-lg bg-nsoc-orange px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nsoc-orange focus-visible:ring-offset-2"
               >
                 {nsocData.navigation.cta.label}
@@ -112,39 +121,30 @@ export function Navbar() {
             onClick={() => setIsMobileOpen(false)}
             aria-hidden="true"
           />
-          <div className="absolute top-16 left-0 right-0 bg-background border-b border-border shadow-xl p-6 space-y-4">
+          <nav
+            className="absolute top-16 left-0 right-0 bg-background border-b border-border shadow-xl p-6 space-y-1"
+            aria-label="Mobile navigation"
+          >
             {nsocData.navigation.items.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMobileOpen(false)}
-                className="block px-3 py-3 text-base font-medium text-foreground hover:bg-accent/50 rounded-lg transition-colors"
+                className="block px-3 py-3 text-base font-medium text-foreground hover:bg-accent/50 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {item.label}
               </a>
             ))}
-            <hr className="border-border" />
-            {nsocData.navigation.externalLinks.map((item) => (
+            <div className="pt-3">
               <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={nsocData.navigation.cta.href}
                 onClick={() => setIsMobileOpen(false)}
-                className="block px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-lg transition-colors"
+                className="block w-full text-center rounded-lg bg-nsoc-orange px-4 py-3 text-base font-semibold text-white hover:bg-orange-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nsoc-orange"
               >
-                {item.label}
+                {nsocData.navigation.cta.label}
               </a>
-            ))}
-            <a
-              href={nsocData.navigation.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center rounded-lg bg-nsoc-orange px-4 py-3 text-base font-semibold text-white hover:bg-orange-600 transition-colors"
-            >
-              {nsocData.navigation.cta.label}
-            </a>
-          </div>
+            </div>
+          </nav>
         </div>
       )}
     </>

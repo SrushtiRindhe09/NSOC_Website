@@ -38,8 +38,6 @@ export function CtaSection() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href={nsocData.cta.primaryButton.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-xl bg-nsoc-orange px-8 py-4 text-base font-semibold text-white hover:bg-orange-600 transition-all duration-200 hover:shadow-lg hover:shadow-nsoc-orange/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nsoc-orange focus-visible:ring-offset-2"
             >
               {nsocData.cta.primaryButton.label}
@@ -47,8 +45,6 @@ export function CtaSection() {
             </a>
             <a
               href={nsocData.cta.secondaryButton.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-background/50 backdrop-blur-sm px-8 py-4 text-base font-semibold text-foreground hover:bg-accent/50 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {nsocData.cta.secondaryButton.label}

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Code2, Construction } from "lucide-react";
+import { Code2, ArrowUpRight } from "lucide-react";
 import { SectionReveal } from "@/components/ui/section-reveal";
 import { nsocData } from "@/data/nsoc";
 import { motion } from "motion/react";
@@ -26,39 +26,48 @@ export function ProjectsSection() {
           </div>
         </SectionReveal>
 
-        <div className="mt-16 max-w-2xl mx-auto">
+        <div className="mt-16 max-w-3xl mx-auto">
           <SectionReveal delay={100}>
             <motion.div
-              whileHover={{ y: -5 }}
-              className="group flex flex-col items-center justify-center rounded-3xl border border-nsoc-orange/20 bg-nsoc-orange/5 backdrop-blur-xl p-10 md:p-16 text-center transition-all duration-500 hover:border-nsoc-orange/40 hover:bg-nsoc-orange/10 hover:shadow-[0_0_40px_-10px_rgba(255,87,34,0.15)] relative overflow-hidden"
+              whileHover={{ y: -3 }}
+              className="relative rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-10 md:p-14 text-center transition-all duration-300 hover:border-nsoc-orange/20 hover:shadow-lg hover:shadow-nsoc-orange/5 overflow-hidden"
             >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-nsoc-orange to-orange-400" />
-              
-              <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-nsoc-orange/20 to-orange-600/20 flex items-center justify-center text-nsoc-orange mb-6 shadow-[0_0_20px_rgba(255,87,34,0.2)]">
-                <Construction className="h-10 w-10" />
+              {/* Subtle top accent */}
+              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-nsoc-orange/40 to-transparent" />
+
+              <div className="h-16 w-16 mx-auto rounded-2xl bg-gradient-to-br from-nsoc-orange/10 to-orange-600/5 flex items-center justify-center text-nsoc-orange mb-6">
+                <Code2 className="h-8 w-8" />
               </div>
-              
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                WORK IN PROGRESS
+
+              <h3
+                className="text-xl font-bold text-foreground mb-3"
+                style={{ fontFamily: "var(--font-syne), sans-serif" }}
+              >
+                Projects Coming Soon
               </h3>
-              <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
-                {nsocData.projects.underConstruction}
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
+                {nsocData.projects.emptyState}
               </p>
+
+              <div className="mt-8 flex items-center justify-center gap-6">
+                <a
+                  href="#community"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-nsoc-orange hover:text-orange-500 transition-colors"
+                >
+                  Join Community
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+                <a
+                  href="/register"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Get Notified
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
             </motion.div>
           </SectionReveal>
         </div>
-
-        <SectionReveal delay={400}>
-          <div className="mt-12 flex justify-center">
-            <a
-              href={nsocData.projects.cta.href}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-nsoc-orange hover:text-orange-400 transition-colors group"
-            >
-              {nsocData.projects.cta.label}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-          </div>
-        </SectionReveal>
       </div>
     </section>
   );

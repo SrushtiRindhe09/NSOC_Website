@@ -31,16 +31,11 @@ export const nsocData = {
       { label: "How It Works", href: "#how-it-works" },
       { label: "Projects", href: "#projects" },
       { label: "Community", href: "#community" },
-      { label: "Sponsors", href: "#sponsors" },
     ],
     cta: {
       label: "Join NSoC",
       href: "/register",
     },
-    externalLinks: [
-      { label: "Leaderboard", href: "#" },
-      { label: "Team", href: "#" },
-    ],
   },
 
   about: {
@@ -65,6 +60,28 @@ export const nsocData = {
         title: "45-Day Program",
         description:
           "A focused sprint that builds real open source experience on your profile.",
+      },
+    ],
+  },
+
+  impact: {
+    badge: "Program Highlights",
+    heading: "Built for Real Impact",
+    stats: [
+      {
+        value: 45,
+        suffix: " Days",
+        label: "Program Duration",
+      },
+      {
+        value: 5,
+        suffix: " Steps",
+        label: "From Issue to Merge",
+      },
+      {
+        value: 3,
+        suffix: "+",
+        label: "Community Channels",
       },
     ],
   },
@@ -124,12 +141,8 @@ export const nsocData = {
     heading: "Explore NSoC Projects",
     description:
       "Browse real open source projects accepting contributions during NSoC.",
-    cta: {
-      label: "View All Projects",
-      href: "#projects",
-    },
-    items: [],
-    underConstruction: "This page is currently under construction. We're actively building and polishing this section — check back soon!",
+    emptyState:
+      "Projects for this edition are being curated. Check back soon or join the community to be the first to know when they go live.",
   },
 
   community: {
@@ -160,18 +173,13 @@ export const nsocData = {
   },
 
   sponsors: {
-    badge: "Sponsors",
-    heading: "Our Sponsors & Partners",
+    badge: "Sponsors & Partners",
+    heading: "Proudly Partnered",
     description:
       "NSoC is made possible by the support of our sponsors and partners.",
-    cta: {
-      label: "View All Sponsors",
-      href: "#sponsors",
-    },
     items: [
-      { name: "Unstop", tier: "Title Sponsor" },
+      { name: "Unstop", tier: "Title Sponsor", href: "https://unstop.com" },
     ],
-    underConstruction: "Additional sponsors and partners will be revealed soon as we finalize the platform. We are proudly partnered with Unstop for this edition!",
   },
 
   cta: {
@@ -230,15 +238,15 @@ export const nsocData = {
         title: "Navigation",
         links: [
           { label: "Home", href: "/" },
-          { label: "Leaderboard", href: "#" },
+          { label: "About", href: "#about" },
           { label: "Projects", href: "#projects" },
         ],
       },
       {
-        title: "Organization",
+        title: "Program",
         links: [
-          { label: "Sponsors", href: "#sponsors" },
-          { label: "Team", href: "#" },
+          { label: "How It Works", href: "#how-it-works" },
+          { label: "Community", href: "#community" },
         ],
       },
     ],

@@ -32,23 +32,23 @@ export default function LoginPage() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 w-full max-w-md px-6 py-12"
       >
-        <div className="rounded-3xl border border-white/10 bg-black/40 backdrop-blur-2xl p-8 shadow-2xl shadow-purple-500/10">
+        <div className="rounded-3xl border border-border bg-card/80 backdrop-blur-2xl p-8 shadow-2xl shadow-purple-500/10">
           <div className="flex justify-center mb-6">
             <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-purple-400 to-pink-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/20">
               <LogIn className="h-7 w-7" />
             </div>
           </div>
           
-          <h1 className="text-3xl font-bold text-center text-white mb-2" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
+          <h1 className="text-3xl font-bold text-center text-foreground mb-2" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
             Welcome Back
           </h1>
-          <p className="text-center text-slate-400 text-sm mb-8">
+          <p className="text-center text-muted-foreground text-sm mb-8">
             Login to access your approved NSoC dashboard and community links.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="email" className="block text-xs font-medium text-slate-300 uppercase tracking-wider mb-2">
+              <label htmlFor="email" className="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
                 Registered Email
               </label>
               <input
@@ -57,7 +57,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-slate-500 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
+                className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground/50 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
                 placeholder="john@example.com"
               />
             </div>
@@ -75,9 +75,9 @@ export default function LoginPage() {
             </motion.button>
           </form>
 
-          <div className="mt-8 text-center text-sm text-slate-400">
+          <div className="mt-8 text-center text-sm text-muted-foreground">
             Don't have an account?{" "}
-            <Link href="/register" className="text-purple-400 font-semibold hover:text-purple-300 transition-colors">
+            <Link href="/register" className="text-purple-500 dark:text-purple-400 font-semibold hover:text-purple-600 dark:hover:text-purple-300 transition-colors">
               Apply now
             </Link>
           </div>
