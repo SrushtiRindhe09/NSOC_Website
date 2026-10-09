@@ -5,13 +5,13 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { CuteSnowman } from "@/components/ui/cute-snowman";
 import { nsocData } from "@/data/nsoc";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, Variants } from "motion/react";
 
 export function HeroSection() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -22,7 +22,7 @@ export function HeroSection() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40, filter: "blur(10px)", scale: 0.95 },
     visible: {
       opacity: 1,
